@@ -1,0 +1,62 @@
+{
+  "data": {
+    "metadata_path": "data/processed/metadata.pkl",
+    "batch_size": 32,
+    "num_workers": 4,
+    "pin_memory": true,
+    "img_size": 244
+  },
+  "model": {
+    "cnn_filters": [32, 64, 128],
+    "cnn_kernels": [[3, 3], [5, 5]],
+    "cnn_dropout": 0.5,
+    "lstm_units": 100,
+    "lstm_num_layers": 2,
+    "lstm_dropout": 0.2,
+    "lstm_recurrent_dropout": 0.2,
+    "dense_units": 100,
+    "dense_dropout": 0.2,
+    "num_classes": 2
+  },
+  "training": {
+    "epochs": 100,
+    "learning_rate": 0.001,
+    "optimizer": "adam",
+    "criterion": "cross_entropy",
+    "device": "auto",
+    "use_class_weights": false,
+    "use_lr_scheduler": true,
+    "lr_scheduler_factor": 0.5,
+    "lr_scheduler_patience": 3,
+    "lr_scheduler_min_lr": 1e-6
+  },
+  "regularization": {
+    "early_stopping_patience": 5,
+    "early_stopping_min_delta": 0.001,
+    "l2_weight_decay": 0.0001,
+    "dropout_rate": 0.2
+  },
+  "augmentation": {
+    "rotation_degrees": 15,
+    "horizontal_flip": true,
+    "vertical_flip": true,
+    "zoom_scale": [0.8, 1.2]
+  },
+  "logging": {
+    "output_dir": "outputs",
+    "save_best_model": true,
+    "save_checkpoints": true,
+    "checkpoint_interval": 5,
+    "save_tensorboard": true,
+    "tensorboard_dir": "runs",
+    "save_history": true,
+    "plot_results": true,
+    "verbose": true
+  },
+  "evaluation": {
+    "calculate_metrics": true,
+    "metrics": ["accuracy", "sensitivity", "specificity", "f_score", "auc"],
+    "save_predictions": true
+  },
+  "notes": "Paper specification: CNN-LSTM hybrid model for breast cancer classification. IDC Dataset: 244x244 images, 2 classes (negative/positive)"
+}
